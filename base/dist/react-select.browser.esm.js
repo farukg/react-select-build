@@ -1,0 +1,10 @@
+import 'react';
+import 'memoize-one';
+import '@emotion/core';
+import 'react-dom';
+import 'prop-types';
+import '../../dist/utils-06b0d5a4.browser.esm.js';
+import '../../dist/index-1a961d17.browser.esm.js';
+export { S as default, d as defaultProps } from '../../dist/Select-b0aa3bb5.browser.esm.js';
+import '@emotion/css';
+import 'react-input-autosize';
