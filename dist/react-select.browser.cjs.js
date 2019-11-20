@@ -1,15 +1,62 @@
-// 👋 hey!!
-// you might be reading this and seeing .esm in the filename
-// and being confused why there is commonjs below this filename
-// DON'T WORRY!
-// this is intentional
-// it's only commonjs with `preconstruct dev`
-// when you run `preconstruct build`, it will be ESM
-// why is it commonjs?
-// we need to re-export every export from the source file
-// but we can't do that with ESM without knowing what the exports are (because default exports aren't included in export/import *)
-// and they could change after running `preconstruct dev` so we can't look at the file without forcing people to
-// run preconstruct dev again which wouldn't be ideal
-// this solution could change but for now, it's working
+'use strict';
 
-module.exports = require("/home/fguerlek/react-select/packages/react-select/src/index.js")
+Object.defineProperty(exports, '__esModule', { value: true });
+
+function _interopDefault (ex) { return (ex && (typeof ex === 'object') && 'default' in ex) ? ex['default'] : ex; }
+
+var React = require('react');
+var React__default = _interopDefault(React);
+var memoizeOne = _interopDefault(require('memoize-one'));
+var core = require('@emotion/core');
+require('react-dom');
+require('prop-types');
+require('./utils-896a48cb.browser.cjs.js');
+var index$1 = require('./index-0920d47a.browser.cjs.js');
+var reactSelect = require('./Select-b265687a.browser.cjs.js');
+require('@emotion/css');
+require('react-input-autosize');
+var stateManager = require('./stateManager-61815400.browser.cjs.js');
+var createCache = _interopDefault(require('@emotion/cache'));
+
+function _inheritsLoose(subClass, superClass) { subClass.prototype = Object.create(superClass.prototype); subClass.prototype.constructor = subClass; subClass.__proto__ = superClass; }
+
+var NonceProvider =
+/*#__PURE__*/
+function (_Component) {
+  _inheritsLoose(NonceProvider, _Component);
+
+  function NonceProvider(props) {
+    var _this;
+
+    _this = _Component.call(this, props) || this;
+
+    _this.createEmotionCache = function (nonce) {
+      return createCache({
+        nonce: nonce
+      });
+    };
+
+    _this.createEmotionCache = memoizeOne(_this.createEmotionCache);
+    return _this;
+  }
+
+  var _proto = NonceProvider.prototype;
+
+  _proto.render = function render() {
+    var emotionCache = this.createEmotionCache(this.props.nonce);
+    return React__default.createElement(core.CacheProvider, {
+      value: emotionCache
+    }, this.props.children);
+  };
+
+  return NonceProvider;
+}(React.Component);
+
+var index = stateManager.manageState(reactSelect.Select);
+
+exports.components = index$1.components;
+exports.createFilter = reactSelect.createFilter;
+exports.defaultTheme = reactSelect.defaultTheme;
+exports.mergeStyles = reactSelect.mergeStyles;
+exports.NonceProvider = NonceProvider;
+exports.default = index;

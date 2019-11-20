@@ -1,15 +1,23 @@
-// 👋 hey!!
-// you might be reading this and seeing .esm in the filename
-// and being confused why there is commonjs below this filename
-// DON'T WORRY!
-// this is intentional
-// it's only commonjs with `preconstruct dev`
-// when you run `preconstruct build`, it will be ESM
-// why is it commonjs?
-// we need to re-export every export from the source file
-// but we can't do that with ESM without knowing what the exports are (because default exports aren't included in export/import *)
-// and they could change after running `preconstruct dev` so we can't look at the file without forcing people to
-// run preconstruct dev again which wouldn't be ideal
-// this solution could change but for now, it's working
+'use strict';
 
-module.exports = require("/home/fguerlek/react-select/packages/react-select/src/AsyncCreatable.js")
+Object.defineProperty(exports, '__esModule', { value: true });
+
+require('react');
+require('memoize-one');
+require('@emotion/core');
+require('react-dom');
+require('prop-types');
+require('../../dist/utils-896a48cb.browser.cjs.js');
+require('../../dist/index-0920d47a.browser.cjs.js');
+var reactSelect = require('../../dist/Select-b265687a.browser.cjs.js');
+require('@emotion/css');
+require('react-input-autosize');
+var stateManager = require('../../dist/stateManager-61815400.browser.cjs.js');
+var reactSelect$1 = require('../../async/dist/react-select.browser.cjs.js');
+var reactSelect$2 = require('../../creatable/dist/react-select.browser.cjs.js');
+
+var SelectCreatable = reactSelect$2.makeCreatableSelect(reactSelect.Select);
+var SelectCreatableState = stateManager.manageState(SelectCreatable);
+var AsyncCreatable = reactSelect$1.makeAsyncSelect(SelectCreatableState);
+
+exports.default = AsyncCreatable;
